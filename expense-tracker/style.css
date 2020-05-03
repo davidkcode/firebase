@@ -1,0 +1,30 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  align-items: center;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.mini-container {
+  display: flex;
+  padding: 15px;
+  flex-direction: column;
+  border: 1px solid rgb(230, 227, 227);
+  border-radius: 8px;
+  height: 350px;
+}
+
+.balance > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.balance {
+  justify-content: center;
+  text-align: center;
+}
