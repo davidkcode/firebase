@@ -37,31 +37,31 @@
     <div class="mainContainer">
       <div class="mini-container">
         <h2 class="mb-3">Enter Expense</h2>
-        <form action="">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label>Amount</label>
-            <input type="number" class="form-control" />
-          </div>
-          <button type="submit" class="btn btn-danger mt-3">Submit</button>
-        </form>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" id="expense-name" />
+        </div>
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="number" class="form-control" id="expense-amount" />
+        </div>
+        <button class="btn btn-danger mt-3" id="expense-button">
+          Add Expense
+        </button>
       </div>
       <div class="mini-container">
         <h2 class="mb-3">Enter Revenue</h2>
-        <form action="">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label>Amount</label>
-            <input type="number" class="form-control" />
-          </div>
-          <button type="submit" class="btn btn-success mt-3">Submit</button>
-        </form>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" id="revenue-name" />
+        </div>
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="number" class="form-control" id="revenue-amount" />
+        </div>
+        <button class="btn btn-success mt-3" id="revenue-button">
+          Add Revenue
+        </button>
       </div>
       <div class="mini-container balance">
         <h2 class="mb-5">Balance</h2>

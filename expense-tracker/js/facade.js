@@ -1,24 +1,29 @@
 import View from "./view.js";
+import Model from "./model.js";
 
 function Facade() {
-  this.firebaseConfig = {
-    apiKey: "api-key",
-    authDomain: "project-id.firebaseapp.com",
-    databaseURL: "https://project-id.firebaseio.com",
-    projectId: "project-id",
-    storageBucket: "project-id.appspot.com",
-    messagingSenderId: "sender-id",
-    appId: "app-id",
-    measurementId: "G-measurement-id",
-  };
-
   this.view = new View("mainContainer");
+  this.model = new Model();
+  this.model.subscribe(this.view);
 }
 
 Facade.prototype.main = function () {
   firebase.initializeApp(this.firebaseConfig);
-  this.database = firebase.database();
   this.view.main();
+
+  document.getElementById("expense-button").addEventListener("click", () => {
+    let name = document.getElementById("expense-name").value;
+    let amount = document.getElementById("expense-amount").value;
+    if (name == "" || amount == 0) alert("Enter values");
+    this.model.addExpense(name, amount);
+  });
+
+  document.getElementById("revenue-button").addEventListener("click", () => {
+    let name = document.getElementById("revenue-name").value;
+    let amount = document.getElementById("revenue-amount").value;
+    if (name == "" || amount == 0) alert("Enter values");
+    this.model.addRevenue(name, Number(amount));
+  });
 };
 
 let facade = new Facade();
