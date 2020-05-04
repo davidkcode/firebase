@@ -2,7 +2,7 @@ import Expense from "./expense.js";
 import Revenue from "./revenue.js";
 import Observable from "./observable.js";
 
-function Model() {
+function Model(database) {
   Observable.call(this);
   this.expenses = [];
   this.revenues = [];
@@ -50,6 +50,14 @@ Model.prototype.addRevenue = function (name, amount) {
   });
 };
 
+Model.prototype.retrieveDataFromDatabase = function () {
+  fetch("URL/budget.json").then((response) => {
+    response.json().then((data) => {
+      console.log(data);
+    });
+  });
+};
+
 Model.prototype.calculateSums = function () {
   this.revenueSum = 0;
   this.expenseSum = 0;
@@ -59,7 +67,6 @@ Model.prototype.calculateSums = function () {
   });
   this.revenues.forEach((revenue) => {
     this.revenueSum += Number(revenue.amount);
-    console.log(revenue.amount);
   });
 };
 

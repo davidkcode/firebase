@@ -8,7 +8,7 @@ function Facade() {
 }
 
 Facade.prototype.main = function () {
-  firebase.initializeApp(this.firebaseConfig);
+  this.model.retrieveDataFromDatabase();
   this.view.main();
 
   document.getElementById("expense-button").addEventListener("click", () => {
