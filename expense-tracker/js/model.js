@@ -2,17 +2,19 @@ import Expense from "./expense.js";
 import Revenue from "./revenue.js";
 import Observable from "./observable.js";
 
-function Model(database) {
+function Model(view) {
   Observable.call(this);
   this.expenses = [];
   this.revenues = [];
   this.expenseSum = 0;
   this.revenueSum = 0;
+  this.view = view;
 }
 
 Model.prototype = Object.create(Observable.prototype);
 
 Model.prototype.addExpense = function (name, amount) {
+  this.view.showSpinner();
   const expense = new Expense(name, amount);
   fetch("URL/budget/expenses.json", {
     headers: {
@@ -28,10 +30,12 @@ Model.prototype.addExpense = function (name, amount) {
     } else {
       alert("Something went wrong. Try again later");
     }
+    this.view.showSpinner();
   });
 };
 
 Model.prototype.addRevenue = function (name, amount) {
+  this.view.showSpinner();
   const revenue = new Revenue(name, amount);
   fetch("URL/budget/revenues.json", {
     headers: {
@@ -47,10 +51,12 @@ Model.prototype.addRevenue = function (name, amount) {
     } else {
       alert("Something went wrong. Try again later");
     }
+    this.view.showSpinner();
   });
 };
 
 Model.prototype.retrieveDataFromDatabase = function () {
+  this.view.showSpinner();
   fetch("URL/budget.json").then((response) => {
     response.json().then((data) => {
       const expenses = data["expenses"];
@@ -67,7 +73,7 @@ Model.prototype.retrieveDataFromDatabase = function () {
           new Revenue(revenues[revenue]["name"], revenues[revenue]["amount"])
         );
       }
-
+      this.view.showSpinner();
       this.calculateSums();
       this.notify(this.expenseSum, this.revenueSum);
     });

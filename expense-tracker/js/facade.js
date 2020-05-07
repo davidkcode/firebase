@@ -3,13 +3,13 @@ import Model from "./model.js";
 
 function Facade() {
   this.view = new View("mainContainer");
-  this.model = new Model();
+  this.model = new Model(this.view);
   this.model.subscribe(this.view);
 }
 
 Facade.prototype.main = function () {
-  this.model.retrieveDataFromDatabase();
   this.view.main();
+  this.model.retrieveDataFromDatabase();
 
   document.getElementById("expense-button").addEventListener("click", () => {
     let name = document.getElementById("expense-name").value;
