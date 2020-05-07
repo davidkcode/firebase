@@ -22,20 +22,6 @@ View.prototype.updateValues = function (expenses, revenues) {
   this.balance.innerHTML =
     Number(this.revenues.innerHTML) - Number(this.expenses.innerHTML);
 
-  if (this.balance.innerHTML < 0) {
-    document
-      .getElementById("balanceContainer")
-      .setAttribute("style", "color: red;");
-  } else if (this.balance.innerHTML > 0) {
-    document
-      .getElementById("balanceContainer")
-      .setAttribute("style", "color: green;");
-  } else {
-    document
-      .getElementById("balanceContainer")
-      .setAttribute("style", "color: black;");
-  }
-
   this.expenses.innerHTML = this.expenses.innerHTML + "$";
   this.revenues.innerHTML = this.revenues.innerHTML + "$";
   this.balance.innerHTML = this.balance.innerHTML + "$";

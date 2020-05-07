@@ -1,4 +1,10 @@
-.mainContainer {
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* .mainContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-content: center;
@@ -27,6 +33,55 @@
 .balance {
   justify-content: center;
   text-align: center;
+} */
+
+.wrapperContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.balanceWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.valueContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.valueContainer > div {
+  width: 200px;
+  border: 0.5px solid rgb(228, 225, 225);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 0px;
+}
+
+.addWrapper {
+  display: grid;
+  margin-top: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 40px;
+  padding: 40px;
+  height: auto;
 }
 
 #overlay {
