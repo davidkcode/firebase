@@ -16,7 +16,7 @@ Model.prototype = Object.create(Observable.prototype);
 Model.prototype.addExpense = function (name, amount) {
   this.view.showSpinner();
   const expense = new Expense(name, amount);
-  fetch("https://expense-tracker-6954f.firebaseio.com/budget/expenses.json", {
+  fetch("URL/budget/expenses.json", {
     headers: {
       "content-type": "application/json",
     },
@@ -37,7 +37,7 @@ Model.prototype.addExpense = function (name, amount) {
 Model.prototype.addRevenue = function (name, amount) {
   this.view.showSpinner();
   const revenue = new Revenue(name, amount);
-  fetch("https://expense-tracker-6954f.firebaseio.com/budget/revenues.json", {
+  fetch("URL/budget/revenues.json", {
     headers: {
       "content-type": "application/json",
     },
@@ -57,29 +57,27 @@ Model.prototype.addRevenue = function (name, amount) {
 
 Model.prototype.retrieveDataFromDatabase = function () {
   this.view.showSpinner();
-  fetch("https://expense-tracker-6954f.firebaseio.com/budget.json").then(
-    (response) => {
-      response.json().then((data) => {
-        const expenses = data["expenses"];
-        const revenues = data["revenues"];
+  fetch("URL/budget.json").then((response) => {
+    response.json().then((data) => {
+      const expenses = data["expenses"];
+      const revenues = data["revenues"];
 
-        for (const expense in expenses) {
-          this.expenses.push(
-            new Expense(expenses[expense]["name"], expenses[expense]["amount"])
-          );
-        }
+      for (const expense in expenses) {
+        this.expenses.push(
+          new Expense(expenses[expense]["name"], expenses[expense]["amount"])
+        );
+      }
 
-        for (const revenue in revenues) {
-          this.revenues.push(
-            new Revenue(revenues[revenue]["name"], revenues[revenue]["amount"])
-          );
-        }
-        this.view.showSpinner();
-        this.calculateSums();
-        this.notify(this.expenseSum, this.revenueSum);
-      });
-    }
-  );
+      for (const revenue in revenues) {
+        this.revenues.push(
+          new Revenue(revenues[revenue]["name"], revenues[revenue]["amount"])
+        );
+      }
+      this.view.showSpinner();
+      this.calculateSums();
+      this.notify(this.expenseSum, this.revenueSum);
+    });
+  });
 };
 
 Model.prototype.calculateSums = function () {
