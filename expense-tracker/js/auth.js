@@ -1,10 +1,18 @@
 import Facade from "./facade.js";
 
+/*
 let firebaseConfig = {
   apiKey: "api-key",
   authDomain: "project-id.firebaseapp.com",
   databaseURL: "https://project-id.firebaseio.com",
   projectId: "project-id",
+};*/
+
+let firebaseConfig = {
+  apiKey: "AIzaSyDuFGyw5jJwni6UjHvfPxiCtNGXGxrFVNw",
+  authDomain: "expense-tracker-6954f.firebaseapp.com",
+  databaseURL: "https://expense-tracker-6954f.firebaseio.com",
+  projectId: "expense-tracker-6954f",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -20,7 +28,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     signupLink.classList.add("disabled");
     loginLink.classList.add("disabled");
     logoutLink.classList.remove("disabled");
-    facade.main();
+    facade.main(user.uid);
   } else {
     signupLink.classList.remove("disabled");
     loginLink.classList.remove("disabled");
@@ -51,9 +59,6 @@ signupForm.addEventListener("submit", (event) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then((cred) => {
-      console.log(cred);
-    })
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -67,6 +72,7 @@ signupForm.addEventListener("submit", (event) => {
       console.log(error);
       // [END_EXCLUDE]
     });
+  signupForm.reset();
 });
 
 const loginForm = document.querySelector("#login-form");
@@ -89,9 +95,6 @@ loginForm.addEventListener("submit", (event) => {
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((cred) => {
-      console.log(cred);
-    })
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -105,6 +108,7 @@ loginForm.addEventListener("submit", (event) => {
       console.log(error);
       // [END_EXCLUDE]
     });
+  loginForm.reset();
 });
 
 logoutLink.addEventListener("click", (event) => {
