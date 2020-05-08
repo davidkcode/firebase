@@ -1,11 +1,15 @@
+import Facade from "./facade.js";
+
 let firebaseConfig = {
   apiKey: "api-key",
   authDomain: "project-id.firebaseapp.com",
   databaseURL: "https://project-id.firebaseio.com",
   projectId: "project-id",
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
+
+let facade = new Facade();
 
 const signupLink = document.querySelector("#signup-link");
 const loginLink = document.querySelector("#login-link");
@@ -16,10 +20,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     signupLink.classList.add("disabled");
     loginLink.classList.add("disabled");
     logoutLink.classList.remove("disabled");
+    facade.main();
   } else {
     signupLink.classList.remove("disabled");
     loginLink.classList.remove("disabled");
     logoutLink.classList.add("disabled");
+    facade.reset();
+    document.querySelector(".wrapperContainer").innerHTML =
+      "<h3>Login or Signup to use our expense tracker!!!</h3>";
   }
 });
 

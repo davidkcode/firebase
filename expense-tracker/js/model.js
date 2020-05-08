@@ -57,27 +57,29 @@ Model.prototype.addRevenue = function (name, amount) {
 
 Model.prototype.retrieveDataFromDatabase = function () {
   this.view.showSpinner();
-  fetch("URL/budget.json").then((response) => {
-    response.json().then((data) => {
-      const expenses = data["expenses"];
-      const revenues = data["revenues"];
+  fetch("URL/budget.json").then(
+    (response) => {
+      response.json().then((data) => {
+        const expenses = data["expenses"];
+        const revenues = data["revenues"];
 
-      for (const expense in expenses) {
-        this.expenses.push(
-          new Expense(expenses[expense]["name"], expenses[expense]["amount"])
-        );
-      }
+        for (const expense in expenses) {
+          this.expenses.push(
+            new Expense(expenses[expense]["name"], expenses[expense]["amount"])
+          );
+        }
 
-      for (const revenue in revenues) {
-        this.revenues.push(
-          new Revenue(revenues[revenue]["name"], revenues[revenue]["amount"])
-        );
-      }
-      this.view.showSpinner();
-      this.calculateSums();
-      this.notify(this.expenseSum, this.revenueSum);
-    });
-  });
+        for (const revenue in revenues) {
+          this.revenues.push(
+            new Revenue(revenues[revenue]["name"], revenues[revenue]["amount"])
+          );
+        }
+        this.view.showSpinner();
+        this.calculateSums();
+        this.notify(this.expenseSum, this.revenueSum);
+      });
+    }
+  );
 };
 
 Model.prototype.calculateSums = function () {

@@ -1,10 +1,9 @@
-function View() {
+function View() {}
+
+View.prototype.main = function () {
   this.expenses = document.getElementById("expense-value");
   this.revenues = document.getElementById("revenue-value");
   this.balance = document.getElementById("balance-value");
-}
-
-View.prototype.main = function () {
   let overlay = document.createElement("div");
   let spinner = document.createElement("div");
 
