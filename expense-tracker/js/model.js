@@ -16,10 +16,7 @@ Model.prototype = Object.create(Observable.prototype);
 Model.prototype.addExpense = function (name, amount) {
   this.view.showSpinner();
   const expense = new Expense(name, amount);
-  let url =
-    "https://expense-tracker-6954f.firebaseio.com/users/" +
-    this.userid +
-    "/budget/expenses.json";
+  let url = "URL/users/" + this.userid + "/budget/expenses.json";
   fetch(url, {
     headers: {
       "content-type": "application/json",
@@ -41,10 +38,7 @@ Model.prototype.addExpense = function (name, amount) {
 Model.prototype.addRevenue = function (name, amount) {
   this.view.showSpinner();
   const revenue = new Revenue(name, amount);
-  let url =
-    "https://expense-tracker-6954f.firebaseio.com/users/" +
-    this.userid +
-    "/budget/revenues.json";
+  let url = "URL/users/" + this.userid + "/budget/revenues.json";
   fetch(url, {
     headers: {
       "content-type": "application/json",
@@ -66,10 +60,7 @@ Model.prototype.addRevenue = function (name, amount) {
 Model.prototype.retrieveDataFromDatabase = function (userid) {
   this.userid = userid;
   this.view.showSpinner();
-  let url =
-    "https://expense-tracker-6954f.firebaseio.com/users/" +
-    this.userid +
-    "/budget.json";
+  let url = "URL/users/" + this.userid + "/budget.json";
   fetch(url).then((response) => {
     response.json().then((data) => {
       if (data == null) {

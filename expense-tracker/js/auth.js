@@ -1,18 +1,10 @@
 import Facade from "./facade.js";
 
-/*
 let firebaseConfig = {
   apiKey: "api-key",
   authDomain: "project-id.firebaseapp.com",
   databaseURL: "https://project-id.firebaseio.com",
   projectId: "project-id",
-};*/
-
-let firebaseConfig = {
-  apiKey: "AIzaSyDuFGyw5jJwni6UjHvfPxiCtNGXGxrFVNw",
-  authDomain: "expense-tracker-6954f.firebaseapp.com",
-  databaseURL: "https://expense-tracker-6954f.firebaseio.com",
-  projectId: "expense-tracker-6954f",
 };
 
 firebase.initializeApp(firebaseConfig);
