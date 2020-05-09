@@ -1,0 +1,21 @@
+.loginContainer {
+  border: 1px solid rgb(230, 230, 230);
+  padding: 30px 40px;
+  width: 40%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+@media (max-width: 700px) {
+  .loginContainer {
+    border: none;
+    padding: 10px 10px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 700px) {
+  .loginContainer {
+    width: 70%;
+  }
+}
