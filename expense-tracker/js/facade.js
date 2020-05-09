@@ -7,9 +7,9 @@ function Facade() {
   this.model.subscribe(this.view);
 }
 
-Facade.prototype.main = function (userid) {
+Facade.prototype.main = function (userid, token) {
   this.view.main();
-  this.model.retrieveDataFromDatabase(userid);
+  this.model.retrieveDataFromDatabase(userid, token);
 
   document.getElementById("expense-button").addEventListener("click", () => {
     let name = document.getElementById("expense-name").value;

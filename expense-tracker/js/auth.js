@@ -20,7 +20,16 @@ firebase.auth().onAuthStateChanged(function (user) {
     signupLink.classList.add("disabled");
     loginLink.classList.add("disabled");
     logoutLink.classList.remove("disabled");
-    facade.main(user.uid);
+    let userid = user.uid;
+    firebase
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        facade.main(userid, idToken);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   } else {
     signupLink.classList.remove("disabled");
     loginLink.classList.remove("disabled");

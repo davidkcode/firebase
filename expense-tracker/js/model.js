@@ -16,7 +16,8 @@ Model.prototype = Object.create(Observable.prototype);
 Model.prototype.addExpense = function (name, amount) {
   this.view.showSpinner();
   const expense = new Expense(name, amount);
-  let url = "URL/users/" + this.userid + "/budget/expenses.json";
+  let url =
+    "URL/users/" + this.userid + "/budget/expenses.json?auth=" + this.token;
   fetch(url, {
     headers: {
       "content-type": "application/json",
@@ -38,7 +39,8 @@ Model.prototype.addExpense = function (name, amount) {
 Model.prototype.addRevenue = function (name, amount) {
   this.view.showSpinner();
   const revenue = new Revenue(name, amount);
-  let url = "URL/users/" + this.userid + "/budget/revenues.json";
+  let url =
+    "URL/users/" + this.userid + "/budget/revenues.json?auth=" + this.token;
   fetch(url, {
     headers: {
       "content-type": "application/json",
@@ -57,10 +59,11 @@ Model.prototype.addRevenue = function (name, amount) {
   });
 };
 
-Model.prototype.retrieveDataFromDatabase = function (userid) {
+Model.prototype.retrieveDataFromDatabase = function (userid, token) {
   this.userid = userid;
+  this.token = token;
   this.view.showSpinner();
-  let url = "URL/users/" + this.userid + "/budget.json";
+  let url = "URL/users/" + this.userid + "/budget.json?auth=" + this.token;
   fetch(url).then((response) => {
     response.json().then((data) => {
       if (data == null) {
