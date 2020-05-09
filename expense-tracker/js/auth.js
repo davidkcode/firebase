@@ -60,6 +60,11 @@ signupForm.addEventListener("submit", (event) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
+    .then((res) => {
+      $(function () {
+        $("#signupModal").modal("toggle");
+      });
+    })
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -96,6 +101,11 @@ loginForm.addEventListener("submit", (event) => {
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
+    .then((res) => {
+      $(function () {
+        $("#loginModal").modal("toggle");
+      });
+    })
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -114,10 +124,5 @@ loginForm.addEventListener("submit", (event) => {
 
 logoutLink.addEventListener("click", (event) => {
   event.preventDefault();
-  firebase
-    .auth()
-    .signOut()
-    .then(function () {
-      console.log("user logged out");
-    });
+  firebase.auth().signOut();
 });
