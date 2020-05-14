@@ -1,3 +1,5 @@
+const db = firebase.firestore();
+
 const signupForm = document.getElementById("signup-form");
 signupForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -21,6 +23,11 @@ signupForm.addEventListener("submit", (event) => {
     .createUserWithEmailAndPassword(email, password1)
     .then((res) => {
       window.location.replace((href = "index.html"));
+      db.collection("users").add({
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+      });
     })
     .catch(function (error) {
       // Handle Errors here.
