@@ -22,12 +22,14 @@ signupForm.addEventListener("submit", (event) => {
     .auth()
     .createUserWithEmailAndPassword(email, password1)
     .then((res) => {
-      window.location.replace((href = "index.html"));
-      db.collection("users").add({
+      let uid = res.user.uid;
+      db.collection("users").doc(uid).set({
         firstname: firstname,
         lastname: lastname,
         email: email,
       });
+      window.location.replace((href = "index.html"));
+      signupForm.reset();
     })
     .catch(function (error) {
       // Handle Errors here.
@@ -42,5 +44,4 @@ signupForm.addEventListener("submit", (event) => {
       console.log(error);
       // [END_EXCLUDE]
     });
-  signupForm.reset();
 });
