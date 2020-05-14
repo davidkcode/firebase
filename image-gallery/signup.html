@@ -11,6 +11,34 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style/signup.css" />
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"
+    ></script>
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/auth-signup.js"></script>
+    <script
+      defer
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <!-- Navbar -->
@@ -29,18 +57,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#">Gallery</a>
-          <a class="nav-item nav-link disabled" href="signup.html">Sign up</a>
+          <a class="nav-item nav-link" href="index.html">Gallery</a>
+          <a class="nav-item nav-link" href="signup.html">Sign up</a>
           <a class="nav-item nav-link" href="login.html">Login</a>
-          <a class="nav-item nav-link" href="#">Profile</a>
-          <a class="nav-item nav-link" href="#">Logout</a>
-          <a
-            class="nav-item nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
-          >
+          <a class="nav-item nav-link" href="profile.html">Profile</a>
+          <a class="nav-item nav-link logout" href="#">Logout</a>
         </div>
       </div>
     </nav>
@@ -49,28 +70,18 @@
     <!-- signup Form -->
     <div class="loginContainer rounded">
       <h2 class="mb-4">Sign up</h2>
-      <form class="needs-validation" novalidate>
+      <form id="signup-form" class="needs-validation" novalidate>
         <div class="form-row">
           <div class="col-md mb-3">
-            <label for="validationCustom01">First name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="validationCustom01"
-              required
-            />
+            <label for="firstname">First name</label>
+            <input type="text" class="form-control" id="firstname" required />
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md mb-3">
-            <label for="validationCustom02">Last name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="validationCustom02"
-              required
-            />
+            <label for="lastname">Last name</label>
+            <input type="text" class="form-control" id="lastname" required />
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -78,31 +89,31 @@
         </div>
         <div class="form-row">
           <div class="col-md mb-3">
-            <label for="validationCustomUsername">Username</label>
+            <label for="email">Email</label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">@</span>
               </div>
               <input
-                type="text"
+                type="email"
                 class="form-control rounded-right"
-                id="validationCustomUsername"
+                id="email"
                 aria-describedby="inputGroupPrepend"
                 required
               />
               <div class="invalid-feedback">
-                Please choose a username.
+                Please enter email.
               </div>
             </div>
           </div>
         </div>
         <div class="form-row">
           <div class="col-md mb-3">
-            <label for="inputPassword3">Password</label>
+            <label for="password1">Password</label>
             <input
               type="password"
               class="form-control"
-              id="inputPassword3"
+              id="password1"
               required
             />
             <div class="invalid-feedback">
@@ -110,11 +121,11 @@
             </div>
           </div>
           <div class="col-md mb-3">
-            <label for="inputPassword3">Password</label>
+            <label for="password2">Password</label>
             <input
               type="password"
               class="form-control"
-              id="inputPassword3"
+              id="password2"
               required
             />
             <div class="invalid-feedback">
@@ -137,7 +148,7 @@
             You must agree before submitting.
           </div>
         </div>
-        <button class="btn btn-primary mt-3" type="submit">Sign up</button>
+        <button class="btn btn-primary mt-3">Sign up</button>
       </form>
     </div>
     <!-- signup Form -->
