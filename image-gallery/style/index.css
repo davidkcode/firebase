@@ -6,3 +6,9 @@
   grid-gap: 20px;
   padding: 30px;
 }
+
+.imagesContainer > div:hover {
+  transform: scale(1.1);
+  transition: all;
+  transition-duration: 0.5s;
+}
